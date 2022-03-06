@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CheckList App</string>
+    <string name="enter_title">Enter Title</string>
+    <string name="set">Set</string>
+    <string name="enter_item">Enter Item</string>
+    <string name="add">Add</string>
 </resources>
