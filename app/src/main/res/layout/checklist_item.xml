@@ -25,7 +25,6 @@
             android:autofillHints=""
             android:hint="@string/enter_title"
             android:inputType="text"
-            android:textColorHint="#78909C"
             android:textSize="20sp" />
 
         <Button

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CheckListApp">
         <activity
-            android:name=".CheckListActivity"
+            android:name=".activity.CheckListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
