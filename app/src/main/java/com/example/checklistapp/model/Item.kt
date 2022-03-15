@@ -1,4 +1,3 @@
 package com.example.checklistapp.model
 
-class Item(var name: String, var isChecked: Boolean = false) {
-}
+data class Item(val itemName: String, var isChecked: Boolean = false)
