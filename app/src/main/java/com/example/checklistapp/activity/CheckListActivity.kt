@@ -2,11 +2,15 @@ package com.example.checklistapp.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.checklistapp.R
 import com.example.checklistapp.adapter.CheckListAdapter
+import com.example.checklistapp.api.Api
 import com.example.checklistapp.databinding.ActivityChecklistBinding
 import com.example.checklistapp.model.Item
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CheckListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChecklistBinding
@@ -35,7 +39,6 @@ class CheckListActivity : AppCompatActivity() {
             }else {
                 binding.etItem.setError("Enter Item Name")
             }
-            adapter.notifyDataSetChanged()
         }
     }
 
@@ -48,7 +51,17 @@ class CheckListActivity : AppCompatActivity() {
 
     private fun insertItem(itemName: String) {
         val item = Item(itemName)
-        itemLists.add(item)
+        val call = Api.RETROFIT_SERVICE.addItem(item.name,item.checked)
+        call.enqueue(object : Callback<Item?> {
+            override fun onResponse(call: Call<Item?>, response: Response<Item?>) {
+                    Toast.makeText(this@CheckListActivity,"Success",Toast.LENGTH_LONG).show()
+            }
+
+            override fun onFailure(call: Call<Item?>, t: Throwable) {
+                    Toast.makeText(this@CheckListActivity,t.message,Toast.LENGTH_LONG).show()
+            }
+        })
+//        itemLists.add(item)
     }
 
 

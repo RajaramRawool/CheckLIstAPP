@@ -1,3 +1,3 @@
 package com.example.checklistapp.model
 
-data class Item(val itemName: String, var isChecked: Boolean = false)
+data class Item(val name: String, var checked: String = "false")

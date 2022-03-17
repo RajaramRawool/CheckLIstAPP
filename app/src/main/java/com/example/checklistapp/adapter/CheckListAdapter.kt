@@ -23,7 +23,7 @@ class CheckListAdapter(val context: Context, val itemList: MutableList<Item>) :
     }
 
     override fun onBindViewHolder(holder: CheckListViewHolder, position: Int) {
-        holder.ItemName.text = list[position].itemName
+        holder.ItemName.text = list[position].name
     }
 
     override fun getItemCount(): Int {
