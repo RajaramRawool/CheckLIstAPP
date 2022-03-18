@@ -64,14 +64,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/tv_signup"
+        app:layout_constraintBottom_toTopOf="@+id/tv_login"
         android:layout_marginBottom="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/already_have_an_account" />
 
     <TextView
-        android:id="@+id/tv_signup"
+        android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login"
