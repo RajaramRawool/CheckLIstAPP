@@ -1,7 +1,8 @@
 package com.example.checklistapp.appdatabase
 
-import com.example.checklistapp.model.User
+import com.example.checklistapp.model.ResponseMessage
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Field
@@ -16,12 +17,20 @@ private val retrofit = Retrofit.Builder()
 
 interface ApiService {
     @FormUrlEncoded
-    @POST("insert_api.php")
-    fun insertUser(
+    @POST("register_api.php")
+    fun userRegistration(
         @Field("name") name:String,
         @Field("email") email:String,
         @Field("password") password: String
-    ): Call<User>
+    ): Call<ResponseMessage>
+
+    @FormUrlEncoded
+    @POST("login_api.php")
+    fun userLogin(
+        @Field("email") email:String,
+        @Field("password") password:String
+    ): Call<ResponseMessage>
+
 }
 
 object Api {

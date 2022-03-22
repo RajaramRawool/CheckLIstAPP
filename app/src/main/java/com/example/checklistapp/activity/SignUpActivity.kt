@@ -1,12 +1,13 @@
 package com.example.checklistapp.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import com.example.checklistapp.Message
 import com.example.checklistapp.appdatabase.Api
 import com.example.checklistapp.databinding.ActivitySignUpBinding
-import com.example.checklistapp.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,31 +20,63 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setListeners()
-
-
     }
 
     private fun setListeners() {
+
+//      process for signup
         binding.btSignup.setOnClickListener {
             val name = binding.etName.text.toString().trim()
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
-            val confirmPassword = binding.etConfirmPassowrd.text.toString().trim()
-           if (userInputValidation(name, email, password, confirmPassword)){
+            val confirmPassword = binding.etConfirmPassword.text.toString().trim()
+            if (userInputValidation(name, email, password, confirmPassword)) {
 
-            val call = Api.retrofitService.insertUser(name,email,password)
-            call.enqueue(object : Callback<User?> {
-                override fun onResponse(call: Call<User?>, response: Response<User?>) {
-                    Toast.makeText(this@SignUpActivity,"Success",Toast.LENGTH_LONG).show()
-                }
+                val call = Api.retrofitService.userRegistration(name, email, password)
+                call.enqueue(object : Callback<com.example.checklistapp.model.ResponseMessage> {
+                    override fun onResponse(
+                        call: Call<com.example.checklistapp.model.ResponseMessage>,
+                        responseMessage: Response<com.example.checklistapp.model.ResponseMessage>
+                    ) {
+                        var message = responseMessage.body()?.message
+                        when (message) {
+                            Message.USER_ALREADY_EXIST, Message.SOMETHING_WENT_WRONG , Message.FAILED_TO_ADD_USER -> {
+                                binding.etName.text.clear()
+                                binding.etEmail.text.clear()
+                                binding.etPassword.text.clear()
+                                binding.etConfirmPassword.text.clear()
 
-                override fun onFailure(call: Call<User?>, t: Throwable) {
-                    Toast.makeText(this@SignUpActivity,"Failed:-${t.message}",Toast.LENGTH_LONG).show()
-                }
-            })
-           }
+                                Toast.makeText(this@SignUpActivity, message, Toast.LENGTH_LONG)
+                                    .show()
+
+                            }
+                            Message.USER_ADDED_SUCCESSFULLY -> {
+                                startActivity(
+                                    Intent(
+                                        this@SignUpActivity,
+                                        LoginActivity::class.java
+                                    )
+                                )
+                                Toast.makeText(this@SignUpActivity, message, Toast.LENGTH_LONG)
+                                    .show()
+                            }
+                        }
+
+
+                    }
+
+                    override fun onFailure(
+                        call: Call<com.example.checklistapp.model.ResponseMessage?>,
+                        t: Throwable
+                    ) {
+                        Toast.makeText(this@SignUpActivity, t.message.toString(), Toast.LENGTH_LONG)
+                            .show()
+                    }
+                })
+            }
         }
     }
+
 
     private fun userInputValidation(
         name: String,
@@ -54,20 +87,20 @@ class SignUpActivity : AppCompatActivity() {
         if (isValidName(name)
             && isValidEmail(email)
             && isValidPassword(password)
-            && isValidConfirmPassword(password,confirmPassword)) {
+            && isValidConfirmPassword(password, confirmPassword)
+        ) {
             return true
         }
         return false
     }
-
     private fun isValidConfirmPassword(password: String, confirmPassword: String): Boolean {
         var result = false
 
         when {
-            confirmPassword.isEmpty() -> binding.etConfirmPassowrd.error =
+            confirmPassword.isEmpty() -> binding.etConfirmPassword.error =
                 "Repeat Password to Confirm"
 
-            password != confirmPassword -> binding.etConfirmPassowrd.error =
+            password != confirmPassword -> binding.etConfirmPassword.error =
                 "Password doesn't match"
 
             else -> result = true
@@ -115,4 +148,5 @@ class SignUpActivity : AppCompatActivity() {
         }
         return result
     }
+
 }

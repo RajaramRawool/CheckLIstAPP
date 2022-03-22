@@ -13,3 +13,13 @@ const val USER_TABLE_NAME: String = "users"
 const val ITEM_TABLE_NAME: String = "items"
 
 
+object Message {
+    const val USER_ALREADY_EXIST = "User Already Exist"
+    const val USER_ADDED_SUCCESSFULLY = "User Added Successfully"
+    const val FAILED_TO_ADD_USER = "Failed to add User"
+    const val SOMETHING_WENT_WRONG = "Something went wrong"
+    const val SUCCESSFULLY_LOGIN = "Successfully Login"
+    const val WRONG_CREDENTIALS = "Email or Password Wrong"
+}
+
+
