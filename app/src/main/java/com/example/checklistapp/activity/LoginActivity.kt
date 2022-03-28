@@ -12,13 +12,20 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.example.checklistapp.Message
+import com.example.checklistapp.util.AppSharedPreference
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var sf : AppSharedPreference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        sf = AppSharedPreference(this@LoginActivity)
+
+        if(sf.getUserSession()) {
+            startActivity(Intent(this@LoginActivity,CheckListActivity::class.java))
+        }
 
 //        SetListeners
         setListeners()
@@ -37,21 +44,19 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         var message = response.body()?.message
                         when(message) {
-                            Message.SUCCESSFULLY_LOGIN -> Toast.makeText(this@LoginActivity,message,Toast.LENGTH_LONG).show()
-
+                            Message.SUCCESSFULLY_LOGIN -> {
+                                Toast.makeText(this@LoginActivity, message, Toast.LENGTH_LONG)
+                                    .show()
+                                sf.setUserSession(true)
+                                startActivity(Intent(this@LoginActivity,CheckListActivity::class.java))
+                            }
                             Message.WRONG_CREDENTIALS , Message.SOMETHING_WENT_WRONG -> Toast.makeText(this@LoginActivity,message,Toast.LENGTH_LONG).show()
                         }
                     }
-
                     override fun onFailure(call: Call<ResponseMessage?>, t: Throwable) {
                     }
                 })
             }
-
-
-
-
-
 
         }
 
