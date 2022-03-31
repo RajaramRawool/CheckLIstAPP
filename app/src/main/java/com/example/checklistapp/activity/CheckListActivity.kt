@@ -7,7 +7,9 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.checklistapp.R
 import com.example.checklistapp.databinding.ActivityChecklistBinding
+import com.example.checklistapp.fragments.ChecklistFragment
 import com.example.checklistapp.util.AppSharedPreference
+import java.lang.System.exit
 
 class CheckListActivity : AppCompatActivity() {
     lateinit var binding: ActivityChecklistBinding
@@ -17,7 +19,13 @@ class CheckListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         sf = AppSharedPreference(this)
+//      inflating Fragment to activity
+        inflateFragment()
+    }
 
+    private fun inflateFragment() {
+        val f = ChecklistFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.frame,f).commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -26,13 +34,25 @@ class CheckListActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        var result = false
+        when(item.itemId) {
             R.id.menu_logout -> { sf.setUserSession(false)
                 startActivity(Intent(this,LoginActivity::class.java))
-                return true
+                finish()
+                result = true
             }
-            else -> super.onOptionsItemSelected(item)
+            R.id.menu_login -> {
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+                result = true
+            }
+            R.id.menu_sync -> {
+                // TODO: sync process will start if user is logged in
+            }
+
+            else -> result = super.onOptionsItemSelected(item)
         }
+        return result
 
     }
 

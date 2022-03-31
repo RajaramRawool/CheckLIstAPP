@@ -7,73 +7,25 @@
     android:layout_margin="5dp"
     tools:context=".activity.CheckListActivity">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/lo_title"
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/frame"
+        />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/et_note_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:autofillHints=""
-            android:hint="@string/enter_title"
-            android:inputType="text"
-            android:textColorHint="#78909C"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/bt_title_set"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/set" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_checklists"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/lo_item"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lo_title" >
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/lo_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_marginBottom="20dp"
+        app:backgroundTint="@color/secondary"
+        android:src="@drawable/ic_add"
+        app:tint="@color/white"
+        />
 
-        <EditText
-            android:id="@+id/et_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:autofillHints=""
-            android:hint="@string/enter_item"
-            android:inputType="text"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/bt_add_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

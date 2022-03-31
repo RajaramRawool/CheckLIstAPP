@@ -1,5 +1,7 @@
 package com.example.checklistapp.appdatabase
 
+import com.example.checklistapp.model.Item
+import com.example.checklistapp.model.ItemList
 import com.example.checklistapp.model.ResponseMessage
 import retrofit2.Call
 import retrofit2.Response
@@ -7,6 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 private const val URL: String = "https://websitecreator.co.in/CheckListApi/"
@@ -30,6 +33,9 @@ interface ApiService {
         @Field("email") email:String,
         @Field("password") password:String
     ): Call<ResponseMessage>
+
+    @GET("get_items_api.php")
+    fun getItems() : Call<MutableList<Item>>
 
 }
 
