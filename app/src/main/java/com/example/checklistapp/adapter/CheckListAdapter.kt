@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.checklistapp.R
 import com.example.checklistapp.model.Item
 
-class CheckListAdapter(list:MutableList<Item>) :
+class CheckListAdapter(list:MutableList<String>) :
     RecyclerView.Adapter<CheckListAdapter.ChecklistViewHolder>() {
 
     var itemList = list
@@ -28,17 +28,11 @@ class CheckListAdapter(list:MutableList<Item>) :
     }
 
     override fun onBindViewHolder(holder: ChecklistViewHolder, position: Int) {
-        if (itemList != null) {
-            holder.itemName.text = itemList[position].name
-            holder.checkBox.isChecked = itemList[position].isChecked
-        }
+        holder.itemName.text = itemList[position]
     }
 
     override fun getItemCount(): Int {
-        return if (itemList == null) {
-            0
-        } else
-            itemList.size
+        return itemList.size
     }
 
 
