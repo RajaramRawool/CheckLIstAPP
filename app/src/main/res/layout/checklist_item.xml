@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".activity.CheckListActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="5dp"
-        app:cardCornerRadius="5dp"
-        app:cardBackgroundColor="@color/white"
         android:layout_marginBottom="5dp"
-        >
+        app:cardBackgroundColor="@color/white"
+        android:outlineSpotShadowColor="@color/secondary"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,6 +25,7 @@
                 android:id="@+id/tv_item_name"
                 android:layout_width="0dp"
                 android:layout_height="70dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:hint="@string/item_name"
@@ -34,11 +35,10 @@
                 android:textColor="@color/secondary"
                 android:textSize="25sp" />
 
-
             <CheckBox
                 android:id="@+id/cb_item_checkbox"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

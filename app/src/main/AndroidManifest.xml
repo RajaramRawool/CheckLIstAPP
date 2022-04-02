@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CheckListApp">
         <activity
+            android:name=".activity.DeleteItemActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.AddItemActivity"
             android:exported="false" />
         <activity
@@ -19,7 +22,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activity.SignUpActivity"
             android:exported="false" />

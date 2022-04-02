@@ -8,6 +8,8 @@ const val CONFIRM_PASSWORD: String = "CONFIRM_PASSWORD"
 const val USER_ID:String = "USER_ID"
 const val SHARED_PREFERENCE_NAME = "CHECKLIST_APP"
 const val IS_LOGGED_IN = "IS_LOGGED_IN"
+const val ITEM_NAME = "itemName"
+const val ID = "id"
 
 //Db related Constants
 const val DB_NAME: String = "u307181413_ChecklistAppDb"

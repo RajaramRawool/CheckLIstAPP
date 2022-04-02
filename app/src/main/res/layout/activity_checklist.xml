@@ -6,20 +6,16 @@
     android:layout_height="match_parent"
     android:layout_margin="5dp"
     tools:context=".activity.CheckListActivity">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/tv_temp"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_checklist"
+        android:layout_width="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="match_parent" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/frame"
-        />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_item"
         android:layout_width="wrap_content"
